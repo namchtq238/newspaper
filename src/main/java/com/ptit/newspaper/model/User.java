@@ -1,10 +1,9 @@
 package com.ptit.newspaper.model;
 
-import com.ptit.newspaper.Role;
+import com.ptit.newspaper.constant.Role;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Data

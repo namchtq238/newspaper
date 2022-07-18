@@ -1,4 +1,4 @@
-package com.ptit.newspaper;
+package com.ptit.newspaper.constant;
 
 public enum Role {
     ADMIN(0, "Admin"), USER(1, "User");
