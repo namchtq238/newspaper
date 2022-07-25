@@ -1,4 +1,4 @@
-package com.ptit.newspaper.model;
+package com.ptit.newspaper.database.model;
 
 import lombok.Data;
 
@@ -9,13 +9,13 @@ import javax.persistence.*;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String comment;
     @ManyToOne()
     @JoinColumn(name = "article_id")
     private Article article;
     @ManyToOne()
     @JoinColumn(name = "user_id")
-    private User user;
+    private Users users;
     private boolean isAnonymous;
 }

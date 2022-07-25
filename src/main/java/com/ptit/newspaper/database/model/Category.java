@@ -1,9 +1,8 @@
-package com.ptit.newspaper.model;
+package com.ptit.newspaper.database.model;
 
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Data

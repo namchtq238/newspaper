@@ -1,9 +1,8 @@
-package com.ptit.newspaper.model;
+package com.ptit.newspaper.database.model;
 
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -16,7 +15,7 @@ public class Article {
     private String body;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private Users users;
     @OneToMany(mappedBy = "article")
     private Set<Comment> comment;
     @ManyToOne

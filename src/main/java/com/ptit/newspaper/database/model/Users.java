@@ -1,6 +1,6 @@
-package com.ptit.newspaper.model;
+package com.ptit.newspaper.database.model;
 
-import com.ptit.newspaper.constant.Role;
+import com.ptit.newspaper.constant.Roles;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -8,17 +8,17 @@ import java.util.Set;
 
 @Data
 @Entity
-public class User {
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String username;
     private String password;
     private String address;
     private String phoneNumber;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "users")
     private Set<Article> article;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "users")
     private Set<Comment> comment;
-    private Role role;
+    private Roles roles;
 }
