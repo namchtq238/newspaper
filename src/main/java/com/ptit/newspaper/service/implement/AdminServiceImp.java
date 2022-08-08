@@ -1,13 +1,20 @@
 package com.ptit.newspaper.service.implement;
 
+import com.ptit.newspaper.api.req.ArticleRequest;
 import com.ptit.newspaper.api.req.CategoryRequest;
+import com.ptit.newspaper.api.res.ArticleResponse;
 import com.ptit.newspaper.api.res.CategoryResponse;
 import com.ptit.newspaper.database.mapper.CategoryMapper;
+import com.ptit.newspaper.database.model.Article;
+import com.ptit.newspaper.database.repository.ArticleRepository;
 import com.ptit.newspaper.database.repository.CategoryRepository;
 import com.ptit.newspaper.service.AdminService;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,6 +23,10 @@ import java.util.stream.Collectors;
 public class AdminServiceImp implements AdminService {
     CategoryRepository categoryRepository;
     CategoryMapper categoryMapper;
+
+    ArticleRepository articleRepository;
+
+    ModelMapper modelMapper;
 
     @Override
     public CategoryResponse createCategory(CategoryRequest categoryRequest) {
@@ -26,4 +37,6 @@ public class AdminServiceImp implements AdminService {
     public List<CategoryResponse> getListCategory() {
         return categoryRepository.findAll().stream().map(categoryMapper::entityToResponse).collect(Collectors.toList());
     }
+
+
 }
