@@ -32,11 +32,8 @@ public class AdminServiceImp implements AdminService {
     public CategoryResponse createCategory(CategoryRequest categoryRequest) {
         return categoryMapper.entityToResponse(categoryRepository.save(categoryMapper.requestToEntity(categoryRequest)));
     }
-
     @Override
     public List<CategoryResponse> getListCategory() {
         return categoryRepository.findAll().stream().map(categoryMapper::entityToResponse).collect(Collectors.toList());
     }
-
-
 }

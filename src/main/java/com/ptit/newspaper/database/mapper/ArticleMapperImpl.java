@@ -15,7 +15,6 @@ import java.util.Optional;
 @Component
 public class ArticleMapperImpl implements ArticleMapper {
     private CategoryRepository categoryRepository;
-
     private UserRepository userRepository;
 
     public Article requestToEntity(ArticleRequest articleRequest) {
