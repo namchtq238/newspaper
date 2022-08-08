@@ -1,15 +1,14 @@
-package com.ptit.newspaper.service.admin.implement;
+package com.ptit.newspaper.service.implement;
 
 import com.ptit.newspaper.api.req.ArticleRequest;
 import com.ptit.newspaper.api.res.ArticleResponse;
 import com.ptit.newspaper.database.mapper.ArticleMapper;
 import com.ptit.newspaper.database.model.Article;
 import com.ptit.newspaper.database.repository.ArticleRepository;
-import com.ptit.newspaper.service.admin.ArticleService;
+import com.ptit.newspaper.service.ArticleService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service

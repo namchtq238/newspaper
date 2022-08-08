@@ -14,13 +14,10 @@ import java.util.Optional;
 
 @Component
 public class ArticleMapperImpl implements ArticleMapper {
-    @Autowired
     private CategoryRepository categoryRepository;
 
-    @Autowired
     private UserRepository userRepository;
 
-    @Override
     public Article requestToEntity(ArticleRequest articleRequest) {
         if(articleRequest == null) return null;
 

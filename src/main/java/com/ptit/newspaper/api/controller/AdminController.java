@@ -27,11 +27,5 @@ public class AdminController {
             return ResponseEntity.internalServerError().body(e.getMessage());
         }
     }
-    public ResponseEntity<?> getArticle(){
-        try{
-            return ResponseEntity.ok().body(adminService.getListArticle());
-        }catch (Exception e){
-            return ResponseEntity.internalServerError().body(e.getMessage());
-        }
-    }
+
 }

@@ -1,4 +1,4 @@
-package com.ptit.newspaper.service.admin;
+package com.ptit.newspaper.service;
 
 import com.ptit.newspaper.api.req.ArticleRequest;
 import com.ptit.newspaper.api.res.ArticleResponse;
