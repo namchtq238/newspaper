@@ -12,23 +12,17 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-@Component
+
 public class ArticleMapperImpl implements ArticleMapper {
-    private CategoryRepository categoryRepository;
-    private UserRepository userRepository;
+
 
     public Article requestToEntity(ArticleRequest articleRequest) {
         if(articleRequest == null) return null;
 
         Article article = new Article();
 
-        Category category = categoryRepository.findById(articleRequest.getCategory_id()).orElse(null);
-
-        Users users = userRepository.findById(articleRequest.getUsers_id()).orElse(null);
         article.setHeader(articleRequest.getHeader());
         article.setBody(articleRequest.getBody());
-        article.setUsers(users);
-        article.setCategory(category);
 
         return article;
     }

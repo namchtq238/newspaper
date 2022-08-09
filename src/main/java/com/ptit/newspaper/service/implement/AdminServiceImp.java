@@ -21,12 +21,11 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class AdminServiceImp implements AdminService {
+    @Autowired
     CategoryRepository categoryRepository;
+    @Autowired
     CategoryMapper categoryMapper;
 
-    ArticleRepository articleRepository;
-
-    ModelMapper modelMapper;
 
     @Override
     public CategoryResponse createCategory(CategoryRequest categoryRequest) {
