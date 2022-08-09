@@ -1,21 +1,20 @@
 package com.ptit.newspaper.api.req;
-
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
 @Getter
-public class UserRegisterReq {
-    private Long id;
+@AllArgsConstructor
+@NoArgsConstructor
+public class UpdateUserReq {
 
     private String username;
-
-    private String password;
 
     private String address;
 
     private String phoneNumber;
 
     private Integer roles;
-
 }
