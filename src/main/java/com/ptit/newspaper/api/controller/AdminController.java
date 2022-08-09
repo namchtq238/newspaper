@@ -27,4 +27,21 @@ public class AdminController {
             return ResponseEntity.internalServerError().body(e.getMessage());
         }
     }
+
+    @GetMapping("/list-user")
+    public ResponseEntity<?> getUser(){
+        try{
+            return ResponseEntity.ok().body(adminService.getListUser());
+        }catch (Exception e){
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+    }
+    @DeleteMapping("/deleteById/{id}")
+    public ResponseEntity<?> deleteUserById(@PathVariable Long id){
+        try{
+            return ResponseEntity.ok().body(adminService.deleteUser(id));
+        } catch (Exception e){
+            return  ResponseEntity.internalServerError().body(e.getMessage());
+        }
+    }
 }
