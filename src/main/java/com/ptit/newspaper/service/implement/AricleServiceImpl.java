@@ -2,19 +2,17 @@ package com.ptit.newspaper.service.implement;
 
 import com.ptit.newspaper.api.req.ArticleRequest;
 import com.ptit.newspaper.api.res.ArticleResponse;
-import com.ptit.newspaper.database.mapper.ArticleMapper;
-import com.ptit.newspaper.database.mapper.ArticleMapperImpl;
 import com.ptit.newspaper.database.model.Article;
 import com.ptit.newspaper.database.repository.ArticleRepository;
 import com.ptit.newspaper.database.repository.CategoryRepository;
 import com.ptit.newspaper.database.repository.UserRepository;
 import com.ptit.newspaper.service.ArticleService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class AricleServiceImpl implements ArticleService {
@@ -24,38 +22,56 @@ public class AricleServiceImpl implements ArticleService {
     private UserRepository userRepository;
     @Autowired
     private CategoryRepository categoryRepository;
-    private ArticleMapper articleMapper;
 
-    public AricleServiceImpl() {
-        this.articleMapper =  new ArticleMapperImpl();
+
+    @Autowired
+    private final ModelMapper mapper;
+
+    public AricleServiceImpl(ModelMapper mapper) {
+        this.mapper = mapper;
     }
 
     @Override
     public List<ArticleResponse> getListArticle() {
-        return articleRepository.findAll().stream().map(articleMapper::entityToResponse).collect(Collectors.toList());
+        List<ArticleResponse> result = new ArrayList<>();
+        List<Article> listArticle = articleRepository.findAll();
+        for(Article article : listArticle){
+            ArticleResponse articleResponse = mapper.map(article,ArticleResponse.class);
+            result.add(articleResponse);
+        }
+        return result;
     }
 
     @Override
     public ArticleResponse createArticle(ArticleRequest articleRequest) {
-        Article article = articleMapper.requestToEntity(articleRequest);
-        article.setUsers(userRepository.findById(articleRequest.getUsers_id()).get());
-        article.setCategory(categoryRepository.findById(articleRequest.getCategory_id()).get());
-        return articleMapper.entityToResponse(articleRepository.save(article));
+
+
+        Article article = mapper.map(articleRequest,Article.class);
+        article.setUsers(userRepository.findById(articleRequest.getUsersId()).get());
+        article.setCategory(categoryRepository.findById(articleRequest.getCategoryId()).get());
+
+        ArticleResponse result = mapper.map(articleRepository.save(article), ArticleResponse.class);
+
+        return result;
     }
 
     @Override
     public ArticleResponse updateArticle(ArticleRequest articleRequest, Long id) {
-        Article newArticle = articleMapper.requestToEntity(articleRequest);
+        Article newArticle = mapper.map(articleRequest,Article.class);
+        newArticle.setUsers(userRepository.findById(articleRequest.getUsersId()).get());
+        newArticle.setCategory(categoryRepository.findById(articleRequest.getCategoryId()).get());
+
+
         Article oldArticle = articleRepository.findById(id).orElse(null);
         if(oldArticle != null){
         oldArticle.setHeader(newArticle.getHeader());
         oldArticle.setBody(newArticle.getBody());
         oldArticle.setUsers(newArticle.getUsers());
         oldArticle.setCategory(newArticle.getCategory());
-            return articleMapper.entityToResponse(articleRepository.save(oldArticle));
+            return mapper.map(articleRepository.save(oldArticle),ArticleResponse.class);
         }
 
-        return articleMapper.entityToResponse(articleRepository.save(newArticle));
+        return mapper.map(articleRepository.save(newArticle),ArticleResponse.class);
 
     }
 
