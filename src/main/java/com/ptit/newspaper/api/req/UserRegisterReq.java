@@ -17,6 +17,10 @@ public class UserRegisterReq {
 
     private String phoneNumber;
 
+<<<<<<< HEAD
     private Roles roles;
+=======
+    private Integer roles;
+>>>>>>> 871a5f61f2ad1915bea4c241caadb07a9f41fc1a
 
 }

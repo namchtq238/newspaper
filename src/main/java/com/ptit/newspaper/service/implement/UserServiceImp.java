@@ -22,10 +22,18 @@ public class UserServiceImp implements UsersService {
 
     @Autowired
     private UserRepository userRepository;
+<<<<<<< HEAD
     @Autowired
     private PasswordEncoder passwordEncoder;
     private UserMapper userMapper;
 
+=======
+    private UserMapper userMapper;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+>>>>>>> 871a5f61f2ad1915bea4c241caadb07a9f41fc1a
 
 
     @Override
