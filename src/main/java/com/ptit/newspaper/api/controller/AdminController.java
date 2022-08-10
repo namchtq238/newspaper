@@ -27,7 +27,20 @@ public class AdminController {
             return ResponseEntity.internalServerError().body(e.getMessage());
         }
     }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateCategory(@RequestBody CategoryRequest req,@PathVariable(value = "id") Long id) {
+        try {
+            return  ResponseEntity.ok(adminService.updateCategory(req,id));
+            // return ResponseEntity.ok().body(adminService.createCategory(categoryRequest));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteCategory(@PathVariable Long id){
 
+        try{
+            return ResponseEntity.ok().body(adminService.deleteCategory(id));
     @GetMapping("/list-user")
     public ResponseEntity<?> getUser(){
         try{

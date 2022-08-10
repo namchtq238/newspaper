@@ -4,6 +4,9 @@ import com.ptit.newspaper.api.req.ArticleRequest;
 import com.ptit.newspaper.api.req.CategoryRequest;
 import com.ptit.newspaper.api.res.ArticleResponse;
 import com.ptit.newspaper.api.res.CategoryResponse;
+import com.ptit.newspaper.api.res.UpdateCategoryResponse;
+import com.ptit.newspaper.database.mapper.CategoryMapper;
+import com.ptit.newspaper.database.model.Category;
 import com.ptit.newspaper.api.res.UserResponse;
 import com.ptit.newspaper.database.mapper.CategoryMapper;
 import com.ptit.newspaper.database.model.Article;
@@ -41,6 +44,19 @@ public class AdminServiceImp implements AdminService {
     public List<CategoryResponse> getListCategory() {
         return categoryRepository.findAll().stream().map(categoryMapper::entityToResponse).collect(Collectors.toList());
     }
+    @Override
+    public UpdateCategoryResponse updateCategory(CategoryRequest req, Long id) {
+        Category newUser = categoryMapper.updateToEntity(req);
+        Category oldUser= categoryRepository.findById(id).orElse(null);
+        if(oldUser != null){
+            oldUser.setName(newUser.getName());
+        }
+        return categoryMapper.entity(categoryRepository.save(newUser));
+    }
+    @Override
+    public Boolean deleteCategory(Long id) {
+        if(categoryRepository.existsById(id)){
+            categoryRepository.deleteById(id);
 
     @Override
     public List<UserResponse> getListUser() {
