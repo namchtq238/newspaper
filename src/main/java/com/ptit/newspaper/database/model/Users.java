@@ -21,4 +21,5 @@ public class Users {
     @OneToMany(mappedBy = "users")
     private Set<Comment> comment;
     private Roles roles;
+
 }
