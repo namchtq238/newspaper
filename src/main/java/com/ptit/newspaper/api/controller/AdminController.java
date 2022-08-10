@@ -27,6 +27,7 @@ public class AdminController {
             return ResponseEntity.internalServerError().body(e.getMessage());
         }
     }
+<<<<<<<<< Temporary merge branch 1
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateCategory(@RequestBody CategoryRequest req,@PathVariable(value = "id") Long id) {
         try {
@@ -41,14 +42,19 @@ public class AdminController {
 
         try{
             return ResponseEntity.ok().body(adminService.deleteCategory(id));
+=========
+
     @GetMapping("/list-user")
     public ResponseEntity<?> getUser(){
         try{
             return ResponseEntity.ok().body(adminService.getListUser());
+>>>>>>>>> Temporary merge branch 2
         }catch (Exception e){
             return ResponseEntity.internalServerError().body(e.getMessage());
         }
     }
+<<<<<<<<< Temporary merge branch 1
+=========
     @DeleteMapping("/deleteById/{id}")
     public ResponseEntity<?> deleteUserById(@PathVariable Long id){
         try{
@@ -57,4 +63,5 @@ public class AdminController {
             return  ResponseEntity.internalServerError().body(e.getMessage());
         }
     }
+>>>>>>>>> Temporary merge branch 2
 }
