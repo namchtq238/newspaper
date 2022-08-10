@@ -1,4 +1,4 @@
-package com.ptit.newspaper.api.controller.admin;
+package com.ptit.newspaper.api.controller;
 
 import com.ptit.newspaper.api.req.ArticleRequest;
 import com.ptit.newspaper.database.repository.ArticleRepository;

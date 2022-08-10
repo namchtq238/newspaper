@@ -6,7 +6,8 @@ import java.util.Map;
 
 public enum Roles {
     ADMIN(0), AUTHOR(1), STUDENT(2);
-    private final Integer value;
+    private Integer value;
+
     Roles(int value) {
         this.value = value;
     }

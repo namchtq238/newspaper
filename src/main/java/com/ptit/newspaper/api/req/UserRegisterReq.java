@@ -17,6 +17,6 @@ public class UserRegisterReq {
 
     private String phoneNumber;
 
-    private Roles roles;
+    private Integer roles;
 
 }

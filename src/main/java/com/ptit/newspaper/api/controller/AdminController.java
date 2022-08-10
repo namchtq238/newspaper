@@ -37,10 +37,14 @@ public class AdminController {
         }
     }
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteCategory(@PathVariable Long id){
+    public ResponseEntity<?> deleteCategory(@PathVariable Long id) {
 
-        try{
+        try {
             return ResponseEntity.ok().body(adminService.deleteCategory(id));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+    }
     @GetMapping("/list-user")
     public ResponseEntity<?> getUser(){
         try{

@@ -19,17 +19,16 @@ import java.util.Optional;
 @AllArgsConstructor
 
 public class UserServiceImp implements UsersService {
+    UserRepository userRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    private UserMapper userMapper;
+    PasswordEncoder passwordEncoder;
+    UserMapper userMapper;
 
 
     @Override
     public UserResponse registerAccount(UserRegisterReq req) {
         Users newUser = userMapper.registerToEntity(req);
+        newUser.setPassword(passwordEncoder.encode(req.getPassword()));
         userRepository.save(newUser);
         return userMapper.entityToResponse(newUser);
     }
@@ -41,7 +40,7 @@ public class UserServiceImp implements UsersService {
         Users oldUser= userRepository.findById(id).orElse(null);
         if(oldUser != null){
             oldUser.setUsername(newUser.getUsername());
-            //oldUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+            oldUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
             oldUser.setAddress(newUser.getAddress());
             oldUser.setPhoneNumber(newUser.getPhoneNumber());
             return userMapper.entity(userRepository.save(oldUser));

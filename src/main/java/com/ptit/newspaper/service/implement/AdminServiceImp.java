@@ -55,9 +55,12 @@ public class AdminServiceImp implements AdminService {
     }
     @Override
     public Boolean deleteCategory(Long id) {
-        if(categoryRepository.existsById(id)){
+        if (categoryRepository.existsById(id)) {
             categoryRepository.deleteById(id);
-
+            return true;
+        }
+        return false;
+    }
     @Override
     public List<UserResponse> getListUser() {
         return userRepository.findAll().stream().map(userMapper::entityToResponse).collect(Collectors.toList());
