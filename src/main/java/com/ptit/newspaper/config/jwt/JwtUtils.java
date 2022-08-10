@@ -2,13 +2,14 @@ package com.ptit.newspaper.config.jwt;
 
 import com.ptit.newspaper.config.security.UserPrincipal;
 import io.jsonwebtoken.*;
-import org.slf4j.Logger;
+//import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import java.security.SignatureException;
+//import java.security.SignatureException;
 import java.util.Date;
 
 @Component
@@ -21,6 +22,9 @@ public class JwtUtils {
 
     @Value("${app.jwtExpirationMs}")
     private int jwtExpirationMs;
+
+    @Value("${app.jwtCookie}")
+    private String jwtCookie;
 
     public String generateJwtToken(Authentication authentication){
 
@@ -36,6 +40,11 @@ public class JwtUtils {
 
     public String getUserNameFromJwtToken(String token){
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
+    }
+
+    public ResponseCookie getCleanJwtCookie() {
+        ResponseCookie cookie = ResponseCookie.from(jwtCookie, null).path("/auth").build();
+        return cookie;
     }
 
     public boolean validateJwtToken(String authToken){
