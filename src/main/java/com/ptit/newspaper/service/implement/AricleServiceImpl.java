@@ -50,9 +50,8 @@ public class AricleServiceImpl implements ArticleService {
         article.setUsers(userRepository.findById(articleRequest.getUsersId()).get());
         article.setCategory(categoryRepository.findById(articleRequest.getCategoryId()).get());
 
-        ArticleResponse result = mapper.map(articleRepository.save(article), ArticleResponse.class);
+        return mapper.map(articleRepository.save(article), ArticleResponse.class);
 
-        return result;
     }
 
     @Override
@@ -80,7 +79,7 @@ public class AricleServiceImpl implements ArticleService {
         if(articleRepository.existsById(id)){
             articleRepository.deleteById(id);
             return true;
-        }else
+        }
         return false;
     }
 }

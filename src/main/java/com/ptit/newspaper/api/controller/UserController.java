@@ -5,15 +5,12 @@ import com.ptit.newspaper.api.req.UpdateUserReq;
 import com.ptit.newspaper.api.req.UserRegisterReq;
 import com.ptit.newspaper.api.res.LoginResponse;
 import com.ptit.newspaper.api.res.MessageResponse;
-import com.ptit.newspaper.api.res.UpdateUserRes;
 import com.ptit.newspaper.config.jwt.JwtUtils;
 import com.ptit.newspaper.config.security.UserPrincipal;
-import com.ptit.newspaper.database.model.Users;
 import com.ptit.newspaper.database.repository.UserRepository;
 import com.ptit.newspaper.service.UsersService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,9 +20,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
@@ -61,7 +55,7 @@ public class UserController {
         try {
             return ResponseEntity.accepted().body(usersService.registerAccount(req));
         } catch (Exception e) {
-            return ResponseEntity.internalServerError().body("Error: " + e.getMessage());
+            return ResponseEntity.internalServerError().body(e.getMessage());
         }
     }
 

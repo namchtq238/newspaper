@@ -1,6 +1,5 @@
 package com.ptit.newspaper.api.req;
 
-import com.ptit.newspaper.constant.Roles;
 import lombok.Getter;
 import lombok.Setter;
 

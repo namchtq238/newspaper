@@ -1,7 +1,6 @@
 package com.ptit.newspaper.api.controller;
 
 import com.ptit.newspaper.api.req.ArticleRequest;
-import com.ptit.newspaper.database.repository.ArticleRepository;
 import com.ptit.newspaper.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

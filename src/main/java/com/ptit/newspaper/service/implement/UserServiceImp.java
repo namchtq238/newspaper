@@ -9,11 +9,8 @@ import com.ptit.newspaper.database.model.Users;
 import com.ptit.newspaper.database.repository.UserRepository;
 import com.ptit.newspaper.service.UsersService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
